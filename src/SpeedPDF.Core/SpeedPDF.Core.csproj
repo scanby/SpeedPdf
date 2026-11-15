@@ -1,0 +1,5 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<PropertyGroup><Configuration Condition="'$(Configuration)'==''">Debug</Configuration><Platform Condition="'$(Platform)'==''">x64</Platform><ProjectGuid>{2A8D26D1-2F6D-4B95-AB1D-0E2E12D71001}</ProjectGuid><OutputType>Library</OutputType><RootNamespace>SpeedPDF.Core</RootNamespace><AssemblyName>SpeedPDF.Core</AssemblyName><TargetFrameworkVersion>v4.8</TargetFrameworkVersion><LangVersion>7.3</LangVersion><PlatformTarget>x64</PlatformTarget><Prefer32Bit>false</Prefer32Bit><OutputPath>bin\$(Configuration)\</OutputPath></PropertyGroup>
+<ItemGroup><Reference Include="System"/><Reference Include="System.Core"/></ItemGroup>
+<ItemGroup><Compile Include="Abstractions\IPdfOperationService.cs"/><Compile Include="Abstractions\IFileSystem.cs"/><Compile Include="Abstractions\IAppLogger.cs"/><Compile Include="Models\OperationResult.cs"/><Compile Include="Properties\AssemblyInfo.cs"/></ItemGroup>
+<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/></Project>

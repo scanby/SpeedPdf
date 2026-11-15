@@ -1,0 +1,26 @@
+name: CI
+on:
+  push:
+    branches: [main, "chore/**", "feature/**", "fix/**"]
+  pull_request:
+    branches: [main]
+jobs:
+  build-and-test:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - uses: microsoft/setup-msbuild@v2
+      - name: Restore NuGet packages
+        run: nuget restore SpeedPDF.sln
+      - name: Build x64 Release
+        run: msbuild SpeedPDF.sln /m /p:Configuration=Release /p:Platform=x64 /verbosity:minimal
+      - name: Run unit tests
+        shell: pwsh
+        run: |
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $installation = & $vswhere -latest -products '*' -requires Microsoft.Component.MSBuild -property installationPath
+          if (-not $installation) { throw "Visual Studio installation was not found." }
+          $vstest = Join-Path $installation "Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe"
+          if (-not (Test-Path $vstest)) { throw "VSTest executable was not found at: $vstest" }
+          & $vstest "tests\SpeedPDF.Tests.Unit\bin\Release\SpeedPDF.Tests.Unit.dll" /TestAdapterPath:"packages\MSTest.TestAdapter.3.6.4\build\net462"
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
