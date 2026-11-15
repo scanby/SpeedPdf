@@ -1,0 +1,8 @@
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<PropertyGroup><Configuration Condition="'$(Configuration)'==''">Debug</Configuration><Platform Condition="'$(Platform)'==''">x64</Platform><ProjectGuid>{2A8D26D1-2F6D-4B95-AB1D-0E2E12D71004}</ProjectGuid><OutputType>WinExe</OutputType><RootNamespace>SpeedPDF.App</RootNamespace><AssemblyName>SpeedPDF</AssemblyName><TargetFrameworkVersion>v4.8</TargetFrameworkVersion><UseWindowsForms>true</UseWindowsForms><LangVersion>7.3</LangVersion><PlatformTarget>x64</PlatformTarget><Prefer32Bit>false</Prefer32Bit><OutputPath>bin\$(Configuration)\</OutputPath><StartupObject>SpeedPDF.App.Program</StartupObject></PropertyGroup>
+<ItemGroup><Reference Include="System"/><Reference Include="System.Core"/><Reference Include="System.Windows.Forms"/><Reference Include="System.Drawing"/></ItemGroup>
+<ItemGroup>
+<ProjectReference Include="..\SpeedPDF.Core\SpeedPDF.Core.csproj"><Project>{2A8D26D1-2F6D-4B95-AB1D-0E2E12D71001}</Project><Name>SpeedPDF.Core</Name></ProjectReference>
+<ProjectReference Include="..\SpeedPDF.PdfEngine\SpeedPDF.PdfEngine.csproj"><Project>{2A8D26D1-2F6D-4B95-AB1D-0E2E12D71002}</Project><Name>SpeedPDF.PdfEngine</Name></ProjectReference>
+<ProjectReference Include="..\SpeedPDF.Infrastructure\SpeedPDF.Infrastructure.csproj"><Project>{2A8D26D1-2F6D-4B95-AB1D-0E2E12D71003}</Project><Name>SpeedPDF.Infrastructure</Name></ProjectReference>
+</ItemGroup><ItemGroup><Compile Include="Program.cs"/><Compile Include="Forms\MainForm.cs"/><Compile Include="Properties\AssemblyInfo.cs"/></ItemGroup><Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/></Project>
